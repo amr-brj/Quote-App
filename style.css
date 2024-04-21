@@ -4,10 +4,34 @@
     box-sizing: border-box;
     font-family: inherit;
 }
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+.background.loaded>img {
+    opacity: 1;
+}
+
+.background>img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 0.3ms ease-in-out;
+}
+
 body {
     height: 100vh;
     width: 100%;
-    background-image: url(images/1.jpg);
     background-size: cover;
     background-position: center;
     font-family: 'Proxima Nova Condensed', sans-serif;
@@ -17,6 +41,7 @@ body {
     align-items: center;
     padding: 50px;
 }
+
 body::after {
     content: "";
     position: absolute;
@@ -29,6 +54,7 @@ body::after {
     z-index: 1;
 
 }
+
 .lower {
     position: absolute;
     left: 50%;
@@ -37,16 +63,21 @@ body::after {
     transform: translateX(-50%);
     color: white;
 }
-.lower i,#next-quote {
+
+.lower i,
+#next-quote {
     background-color: rgba(0, 0, 0, 0.9);
     cursor: pointer;
     padding: 15px;
     border-radius: 10px;
     font-size: 20px;
 }
-#next-quote:hover, i:hover {
+
+#next-quote:hover,
+i:hover {
     opacity: 0.8;
 }
+
 .container {
     position: relative;
     top: -30px;
@@ -60,11 +91,13 @@ body::after {
     padding-bottom: 35px;
     font-style: italic;
     border-radius: 3px;
-
+    transition: opacity 3s;
 }
+
 .container p {
     font-size: 38px;
 }
+
 .container span {
     position: absolute;
     right: 30px;
