@@ -2,9 +2,7 @@ let quoteText = document.getElementById("quote-text");
 let quoteAuthor = document.getElementById("quote-author");
 let next = document.getElementById("next-quote");
 let tweet = document.getElementById("tweet");
-let background = document.querySelector(".background");
 let container = document.querySelector(".container");
-
 const apiURL = "https://api.quotable.io/random";
 next.addEventListener("click", e => {
     getQuote(apiURL);
@@ -16,6 +14,7 @@ function tweeter(text, author) {
 }
 
 async function getQuote(url) {
+    document.querySelector(".background").remove();
     let rand = Math.floor(Math.random() * 7 + 1);
     while (+document.body.dataset.rand === rand) {
         rand = Math.floor(Math.random() * 7 + 1);
