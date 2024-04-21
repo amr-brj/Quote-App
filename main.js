@@ -2,7 +2,6 @@ let quoteText = document.getElementById("quote-text");
 let quoteAuthor = document.getElementById("quote-author");
 let next = document.getElementById("next-quote");
 let tweet = document.getElementById("tweet");
-let img = document.getElementById("background-img");
 let background = document.querySelector(".background");
 let container = document.querySelector(".container");
 
@@ -30,19 +29,25 @@ async function getQuote(url) {
     })
     quoteText.innerHTML = `&quot;${text}&quot;`;
     quoteAuthor.innerHTML = `- ${author}`;
-    img.src = `images/${rand}.jpg`;
-    background.style.backgroundImage = `url(images/Small/${rand}.jpg)`
+
+
+    let createdImg = document.createElement("img");
+    let createdBackground = document.createElement("div");
+    createdBackground.classList.add("background");
+    createdImg.loading = "lazy";
+    createdImg.src = `images/${rand}.jpg`;
+    createdBackground.appendChild(createdImg);
+    createdBackground.style.backgroundImage = `url(images/Small/${rand}.jpg)`;
+    document.body.appendChild(createdBackground);
     document.body.dataset.rand = rand;
-    lazyLoading();
+    lazyLoading(createdImg, createdBackground);
 }
-function lazyLoading() {
+function lazyLoading(img, background) {
     if (img.complete) {
-        container.style.opacity = "0";
         background.classList.add("loaded");
     } else {
         img.addEventListener("load", e => {
             background.classList.add("loaded")
-            container.style.opacity = "1";
         })
     }
 }
