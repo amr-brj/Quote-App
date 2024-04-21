@@ -37,7 +37,7 @@ async function getQuote(url) {
     createdImg.src = `images/${rand}.jpg`;
     createdBackground.appendChild(createdImg);
     createdBackground.style.backgroundImage = `url(images/Small/${rand}.jpg)`;
-    document.body.appendChild(createdBackground);
+    document.body.insertBefore(createdBackground, container);
     document.body.dataset.rand = rand;
     lazyLoading(createdImg, createdBackground);
 }
